@@ -1,4 +1,4 @@
-const Seller=require("../models/adminModel")
+const Seller=require("../models/sellerModel")
 const bcrypt = require('bcrypt')
 const generateToken=require("../utils/token")
 
@@ -28,7 +28,7 @@ const sellerSignUp =async(req,res)=>{
         const token = generateToken(newSeller._id, "seller")
         res.cookie("token", token);
     
-        res.json({ data: newUser, message: "signup success" })
+        res.json({ data: newSeller, message: "signup success" })
     }
    catch (error) {
     res.status(error.statusCode || 500).json({ message: error.message || "Internal server" })

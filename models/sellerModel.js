@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-const adminSchema = new mongoose.Schema({
+const sellerSchema = new mongoose.Schema({
     name:
      {  type:String,
         required:true,
@@ -28,7 +28,7 @@ const adminSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"admin"
+        default:"seller"
     },
     isActive:
     {
@@ -40,6 +40,6 @@ const adminSchema = new mongoose.Schema({
     timestamps:true,
 })
 
-  const Admin = mongoose.model('Admin', adminSchema)
+  const Seller = mongoose.model('Seller', sellerSchema)
 
-  module.exports =Admin
+  module.exports =Seller

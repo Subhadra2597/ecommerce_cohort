@@ -19,6 +19,7 @@ const authUser=(req,res,next)=>{
         }
         
         req.user=decodedToken
+       // console.log(req.user.id)
         next()
     
     

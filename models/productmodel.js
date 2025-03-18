@@ -8,13 +8,19 @@ const productSchema = new mongoose.Schema({
         type:String
     },
     price:{
-        type:String
+        type:Number
     },
     image:{
         type:String,
         default:"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     },
-
+    quantity:{
+        type:String
+    },
+    seller:{
+         type: mongoose.Types.ObjectId,
+          ref: "seller" 
+    }
     },
 {
     timestamps:true,
