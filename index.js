@@ -13,7 +13,7 @@ const port = 3000
 connectdb() //function to connect db
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin:["http://localhost:5173","https://ecommerce-cohort-backend.vercel.app"],
+app.use(cors({origin:["http://localhost:5173","https://e-commerce-cohort-frontend.vercel.app"],
           credentials:true,
           methods:["GET","POST","PUT","DELETE"]}))
 
