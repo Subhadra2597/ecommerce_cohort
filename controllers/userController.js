@@ -41,10 +41,10 @@ const userSignUp =async(req,res)=>{
 //login
 const userLogin= async(req,res)=>{
     try {
-        const{name,email,password}=req.body
+        const{email,password}=req.body
         
         //data validation
-        if(!name||!email||!password){
+        if(!email||!password){
             return res.status(400).json({message:"all fields required"})
         }
         
