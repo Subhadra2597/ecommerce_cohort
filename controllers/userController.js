@@ -27,7 +27,11 @@ const userSignUp =async(req,res)=>{
     
         //generate token usig Id and role
         const token = generateToken(newUser._id, "user")
-        res.cookie("token", token);
+        res.cookie("token", token,{
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        });
     
         res.json({ data: newUser, message: "signup success" })
     }
@@ -70,7 +74,11 @@ const userLogin= async(req,res)=>{
          
          //generate token usig Id and role
          const token = generateToken(userExist._id, "user")
-         res.cookie("token", token)
+         res.cookie("token", token,{
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        })
          delete userExist._doc.password
          
          res.json({ data: userExist, message: "login success" })
@@ -123,7 +131,11 @@ const userLogin= async(req,res)=>{
     
     const userLogout= async(req,res)=>{
         try{
-            res.clearCookie("token")
+            res.clearCookie("token",{
+                sameSite: NODE_ENV === "production" ? "None" : "Lax",
+                secure: NODE_ENV === "production",
+                httpOnly: NODE_ENV === "production",
+            })
             res.json({message:"User logged out successfully"})
         }catch(error){
             return res.status(500).json({message:error.message||"Internal server error"})

@@ -26,7 +26,11 @@ const sellerSignUp =async(req,res)=>{
     
         //generate token usig Id and role
         const token = generateToken(newSeller._id, "seller")
-        res.cookie("token", token);
+        res.cookie("token", token,{
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        });
     
         res.json({ data: newSeller, message: "signup success" })
     }
@@ -66,7 +70,11 @@ const sellerLogin= async(req,res)=>{
          
          //generate token usig Id and role
          const token = generateToken(sellerExist._id, "seller")
-         res.cookie("token", token)
+         res.cookie("token", token,{
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        })
          delete sellerExist._doc.password
          
          res.json({ data: sellerExist, message: "login success" })
@@ -117,7 +125,11 @@ const sellerLogin= async(req,res)=>{
     
     const sellerLogout= async(req,res)=>{
         try{
-            res.clearCookie("token")
+            res.clearCookie("token",{
+                sameSite: NODE_ENV === "production" ? "None" : "Lax",
+                secure: NODE_ENV === "production",
+                httpOnly: NODE_ENV === "production",
+            })
             res.json({message:"seller logged out successfully"})
         }catch(error){
             return res.status(500).json({message:error.message||"Internal server error"})
