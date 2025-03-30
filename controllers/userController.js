@@ -2,6 +2,7 @@ const User=require("../models/userModel")
 const bcrypt = require('bcrypt')
 const generateToken=require("../utils/token")
 const authUser=require("../middlewares/authUser")
+const NODE_ENV=process.env.NODE_ENV
 
 //sign up
 const userSignUp =async(req,res)=>{
