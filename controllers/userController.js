@@ -132,6 +132,8 @@ const userLogin= async(req,res)=>{
     
     const userLogout= async(req,res)=>{
         try{
+            console.log('reached logout controller');
+            
             res.clearCookie("token",{
                 sameSite: NODE_ENV === "production" ? "None" : "Lax",
                 secure: NODE_ENV === "production",

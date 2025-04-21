@@ -46,10 +46,10 @@ const addProductToCart= async(req,res)=>{
         }
 
         //check if product already in the cart
-       /* const productExists = cart.products.some((item) => item.productId.equals(productId));
+        const productExists = cart.products.some((item) => item.productId.equals(productId));
         if (productExists) {
             return res.status(400).json({ message: "product already in cart" });
-        }*/
+        }
        cart.products.push(
            {productId,
             price,
@@ -71,7 +71,8 @@ const removeProductFromCart=async(req,res)=>{
     
     const userId=req.user.id
     const {productId}=req.body
-
+        console.log(req.body,"===req.body");
+        
     //find user's cart
     const cart=await Cart.findOne({userId})
     if(!cart){
@@ -79,7 +80,7 @@ const removeProductFromCart=async(req,res)=>{
     }
     cart.products = cart.products.filter((product) => !product.productId.equals(productId))
       // Recalculate the total price
-      //cart.calculateTotalPrice()
+      cart.calculateTotalPrice()
 
       // Save the cart
       await cart.save();

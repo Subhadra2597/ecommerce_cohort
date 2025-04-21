@@ -1,6 +1,7 @@
 const Seller=require("../models/sellerModel")
 const bcrypt = require('bcrypt')
 const generateToken=require("../utils/token")
+const NODE_ENV=process.env.NODE_ENV
 
 //sign up
 const sellerSignUp =async(req,res)=>{
@@ -44,10 +45,10 @@ const sellerSignUp =async(req,res)=>{
 //login
 const sellerLogin= async(req,res)=>{
     try {
-        const{name,email,password}=req.body
+        const{email,password}=req.body
         
         //data validation
-        if(!name||!email||!password){
+        if(!email||!password){
             return res.status(400).json({message:"all fields required"})
         }
         

@@ -9,7 +9,7 @@ const router= express.Router()
 
 router.get("/get-products",getProducts)
 router.get("/get-ProductDetails/:productId",getProductDetails)
- router.post("/add-product",authSeller,upload.single("image"),addProducts)
+ router.post("/add-product",authSeller,addProducts)
  router.put("/update-product/:productId",authSeller,updateProducts)
  router.delete("/delete-product/:productId",authSeller,deleteProduct)
  module.exports=router
